@@ -7,7 +7,7 @@ module Fastlane
 
         version_code = "0"
 
-        Dir.glob("../**/#{app_folder_name}/build.gradle") do |path|
+        Dir.glob("**/#{app_folder_name}/build.gradle") do |path|
             begin
                 file = File.new(path, "r")
                 while (line = file.gets)
@@ -46,7 +46,7 @@ module Fastlane
       def self.available_options
           [
             FastlaneCore::ConfigItem.new(key: :app_folder_name,
-                                    env_name: "GETVERSIONCODE_APP_VERSION_NAME",
+                                    env_name: "GETVERSIONCODE_APP_FOLDER_NAME",
                                  description: "The name of the application source folder in the Android project (default: app)",
                                     optional: true,
                                         type: String,
