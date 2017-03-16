@@ -4,14 +4,21 @@ module Fastlane
       def self.run(params)
         app_folder_name ||= params[:app_folder_name]
         UI.message("The get_version_code plugin is looking inside your project folder (#{app_folder_name})!")
-
+        
+        product_flavor ||= params[:product_flavor]
+        
         version_code = "0"
+        foundProductFlavor = product_flavor == nil
 
         Dir.glob("**/#{app_folder_name}/build.gradle") do |path|
             begin
                 file = File.new(path, "r")
                 while (line = file.gets)
-                    if line.include? "versionCode"
+                    if !foundProductFlavor and line.include? product_flavor
+                      foundProductFlavor = true
+                    end
+                  
+                    if foundProductFlavor and line.include? "versionCode"
                        versionComponents = line.strip.split(' ')
                        version_code = versionComponents[1].tr("\"","")
                        break
@@ -50,7 +57,13 @@ module Fastlane
                                  description: "The name of the application source folder in the Android project (default: app)",
                                     optional: true,
                                         type: String,
-                               default_value:"app")
+                               default_value:"app"),
+            FastlaneCore::ConfigItem.new(key: :product_flavor,
+                                    env_name: "GETVERSIONCODE_PRODUCT_FLAVOR",
+                                 description: "The name of the product flavor",
+                                    optional: true,
+                                        type: String,
+                               default_value: nil)            
           ]
         end
 
