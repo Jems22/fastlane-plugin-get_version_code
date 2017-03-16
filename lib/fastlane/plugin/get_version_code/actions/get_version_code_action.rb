@@ -60,7 +60,7 @@ module Fastlane
                                default_value:"app"),
             FastlaneCore::ConfigItem.new(key: :product_flavor,
                                     env_name: "GETVERSIONCODE_PRODUCT_FLAVOR",
-                                 description: "The name of the application source folder in the Android project (default: app)",
+                                 description: "The name of the product flavor",
                                     optional: true,
                                         type: String,
                                default_value: nil)            
