@@ -1,3 +1,8 @@
 lane :test do
-  get_version_code
+  get_version_code(
+    #app_folder_name:"project"
+    gradle_file_path:"project/build.gradle",
+    ext_constant_name:"versionName"
+  )
+
 end

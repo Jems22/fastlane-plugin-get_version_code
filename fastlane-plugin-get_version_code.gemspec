@@ -6,7 +6,7 @@ require 'fastlane/plugin/get_version_code/version'
 Gem::Specification.new do |spec|
   spec.name          = 'fastlane-plugin-get_version_code'
   spec.version       = Fastlane::GetVersionCode::VERSION
-  spec.author        = %q{Jérémy TOUDIC}
+  spec.author        = %q{Jems}
   spec.email         = %q{jeremy.toudic@gmail.com}
 
   spec.summary       = %q{Get the version code of anAndroid project. This action will return the version code of your project according to the one set in your build.gradle file}
